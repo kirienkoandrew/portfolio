@@ -1,11 +1,16 @@
-<h1>BLOG</h1>
+
+{% extends 'portfolio/base.html' %}
+{% block content %}
+  <h1>BLOG</h1>
+
+  <h2> Всего {{ blogs.count }} пост{{ blogs.count|pluralize }} </h2>
+
+  {% for blog in blogs %}
+    <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
+    <h3>{{ blog.description }}</h3>
+    <h4>{{ blog.date_field }}</h4>
+    <p>{{ blog.text }}</p>
 
 
-{% for blog in blogs %}
-  <h2>{{ blog.title }}</h2>
-  <h3>{{ blog.description }}</h3>
-  <h4>{{ blog.date_field }}</h4>
-  <p>{{ blog.text }}</p>
-
-
-{% endfor %}
+  {% endfor %}
+{% endblock %}
